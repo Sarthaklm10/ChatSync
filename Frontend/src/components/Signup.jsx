@@ -51,14 +51,14 @@ function Signup() {
           className="border border-black px-6 py-2 rounded-md space-y-3 w-96"
         >
           <h1 className="text-2xl items-center text-blue-600 font-bold">
-            Messenger
+            ChatSync
           </h1>
 
           <h2 className="text-2xl items-center">
             Create a new{" "}
             <span className="text-blue-600 font-semibold">Account</span>
           </h2>
-         
+
           {/* Fullname */}
           <label className="input input-bordered flex items-center gap-2">
             <svg
@@ -164,22 +164,22 @@ function Signup() {
 
           {/* Text & Button */}
           <div className="flex justify-center">
-              <input
-                type="submit"
-                value="Signup"
-                className="text-white bg-blue-600 cursor-pointer w-full rounded-lg py-2"
-              ></input>
-            </div>
-            <p>
-              Have any Account?{" "}
-              <Link
-                to={"/login"}
-                className="text-blue-500 underline cursor-pointer ml-1"
-              >
-                {" "}
-                Login
-              </Link>
-            </p>
+            <input
+              type="submit"
+              value="Signup"
+              className="text-white bg-blue-600 cursor-pointer w-full rounded-lg py-2"
+            ></input>
+          </div>
+          <p>
+            Have any Account?{" "}
+            <Link
+              to={"/login"}
+              className="text-blue-500 underline cursor-pointer ml-1"
+            >
+              {" "}
+              Login
+            </Link>
+          </p>
         </form>
       </div>
     </>

@@ -1,9 +1,9 @@
 import React from "react";
-import User from "./User";
-import useGetAllUsers from "../../context/useGetAllUsers";
+import UserItem from "./UserItem";
+import useUsers from "../context/useUsers";
 
-function Users() {
-  const [allUsers, loading] = useGetAllUsers();
+function UserList() {
+  const [allUsers, loading] = useUsers();
 
   return (
     <div className="h-full flex flex-col bg-base-200 rounded-xl overflow-hidden">
@@ -13,7 +13,7 @@ function Users() {
       <div className="flex-1 overflow-y-auto">
         {allUsers.length > 0 ? (
           allUsers.map((user, index) => (
-            <User key={user._id || index} user={user} />
+            <UserItem key={user._id || index} user={user} />
           ))
         ) : (
           <div className="flex items-center justify-center h-full p-6">
@@ -27,4 +27,4 @@ function Users() {
   );
 }
 
-export default Users;
+export default UserList;

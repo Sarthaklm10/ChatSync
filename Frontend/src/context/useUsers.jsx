@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import axios from "axios";
-function useGetAllUsers() {
+function useUsers() {
   const [allUsers, setAllUsers] = useState([]);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
@@ -18,7 +18,7 @@ function useGetAllUsers() {
         setAllUsers(response.data);
         setLoading(false);
       } catch (error) {
-        console.log("Error in useGetAllUsers: " + error);
+        console.log("Error in useUsers: " + error);
       }
     };
     getUsers();
@@ -26,4 +26,4 @@ function useGetAllUsers() {
   return [allUsers, loading];
 }
 
-export default useGetAllUsers;
+export default useUsers;
