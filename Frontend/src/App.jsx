@@ -1,17 +1,16 @@
 import React from "react";
-import Left from "./home/Leftpart/Left";
-import Right from "./home/Rightpart/Right";
+import Sidebar from "./sidebar/Sidebar";
+import ChatArea from "./chat/ChatArea";
 import Topbar from "./components/Topbar";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
 import { useAuth } from "./context/AuthProvider";
 import { Toaster } from "react-hot-toast";
-import Logout from "./home/left1/Logout";
+import Logout from "./navigation/Logout";
 
 import { Navigate, Route, Routes } from "react-router-dom";
 function App() {
-  const [authUser, setAuthUser] = useAuth();
-  console.log(authUser);
+  const [authUser] = useAuth();
   return (
     <>
       <Routes>
@@ -22,8 +21,8 @@ function App() {
               <div className="flex flex-col h-screen">
                 <Topbar />
                 <div className="flex flex-1">
-                  <Left />
-                  <Right />
+                  <Sidebar />
+                  <ChatArea />
                 </div>
               </div>
             ) : (

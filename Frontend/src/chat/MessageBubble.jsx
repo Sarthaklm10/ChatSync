@@ -1,6 +1,6 @@
 import React from "react";
 
-function Message({ message }) {
+function MessageBubble({ message }) {
   const authUser = JSON.parse(localStorage.getItem("ChatApp"));
   const isOwnMessage = message.senderId === authUser.user._id;
 
@@ -19,10 +19,10 @@ function Message({ message }) {
     : "bg-base-300 text-base-content shadow-md";
 
   return (
-    <div className="p-4">
+    <div className="py-1">
       <div className={`chat ${messageClasses}`}>
         <div
-          className={`chat-bubble ${bubbleClasses} hover:shadow-xl transition-shadow duration-200 rounded-2xl`}
+          className={`chat-bubble ${bubbleClasses} hover:shadow-xl transition-shadow duration-200 rounded-2xl px-4 py-2`}
         >
           {message.message}
         </div>
@@ -34,4 +34,4 @@ function Message({ message }) {
   );
 }
 
-export default Message;
+export default MessageBubble;

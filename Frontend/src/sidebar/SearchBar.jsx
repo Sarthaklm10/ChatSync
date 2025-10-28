@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { FaSearch } from "react-icons/fa";
-import useGetAllUsers from "../../context/useGetAllUsers";
-import useConversation from "../../statemanage/useConversation";
+import useUsers from "../context/useUsers";
+import useConversation from "../store/useConversation";
 import toast from "react-hot-toast";
 
-function Search() {
+function SearchBar() {
   const [searchTerm, setSearchTerm] = useState("");
-  const [allUsers] = useGetAllUsers();
+  const [allUsers] = useUsers();
   const { setSelectedConversation } = useConversation();
 
   const handleSearch = (e) => {
@@ -48,4 +48,4 @@ function Search() {
   );
 }
 
-export default Search;
+export default SearchBar;

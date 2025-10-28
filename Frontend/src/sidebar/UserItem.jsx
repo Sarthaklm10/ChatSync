@@ -1,8 +1,8 @@
 import React from "react";
-import useConversation from "../../statemanage/useConversation.js";
-import { useSocketContext } from "../../context/SocketContext.jsx";
+import useConversation from "../store/useConversation.js";
+import { useSocketContext } from "../context/SocketContext.jsx";
 
-function User({ user }) {
+function UserItem({ user }) {
   const { selectedConversation, setSelectedConversation } = useConversation();
   const { onlineUsers } = useSocketContext();
 
@@ -43,4 +43,4 @@ function User({ user }) {
   );
 }
 
-export default User;
+export default UserItem;

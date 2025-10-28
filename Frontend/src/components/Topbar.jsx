@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Logout from "../home/left1/Logout.jsx";
+import Logout from "../navigation/Logout.jsx";
 
 function Topbar() {
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "dark");
@@ -11,7 +11,9 @@ function Topbar() {
 
   return (
     <div className="w-full bg-base-100 border-b border-base-200 h-14 flex items-center justify-between px-4">
-      <div className="text-lg font-semibold">ChatApp</div>
+      <div className="text-lg font-semibold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+        ChatSync
+      </div>
       <div className="flex items-center gap-2">
         <button onClick={toggleTheme} className="btn btn-sm">
           {theme === "dark" ? "Light" : "Dark"}

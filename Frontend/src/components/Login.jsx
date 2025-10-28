@@ -43,13 +43,12 @@ function Login() {
           className="border border-black px-6 py-2 rounded-md space-y-3 w-96"
         >
           <h1 className="text-2xl items-center text-blue-600 font-bold">
-            Messenger
+            ChatSync
           </h1>
           <h2 className="text-2xl items-center">
             Login with your{" "}
             <span className="text-blue-600 font-semibold">Account</span>
           </h2>
-        
 
           {/* Email */}
           <label className="input input-bordered flex items-center gap-2">
