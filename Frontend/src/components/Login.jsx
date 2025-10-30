@@ -37,17 +37,17 @@ function Login() {
   };
   return (
     <>
-      <div className="flex h-screen items-center justify-center">
+      <div className="min-h-screen w-full bg-sky-100 flex items-center justify-center px-4 py-10">
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="border border-black px-6 py-2 rounded-md space-y-3 w-96"
+          className="w-full max-w-md bg-base-100 border border-base-200 rounded-2xl shadow-md px-6 py-6 md:px-8 md:py-8 space-y-4"
         >
-          <h1 className="text-2xl items-center text-blue-600 font-bold">
+          <h1 className="text-2xl text-center font-extrabold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
             ChatSync
           </h1>
-          <h2 className="text-2xl items-center">
+          <h2 className="text-xl text-center text-base-content">
             Login with your{" "}
-            <span className="text-blue-600 font-semibold">Account</span>
+            <span className="text-primary font-semibold">Account</span>
           </h2>
 
           {/* Email */}
@@ -90,7 +90,7 @@ function Login() {
             <input
               type="password"
               className="grow"
-              placeholder="password"
+              placeholder="Password"
               {...register("password", { required: true })}
             />
           </label>
@@ -99,23 +99,22 @@ function Login() {
               This field is required
             </span>
           )}
-          {/* Text & Button */}
 
-          <div className="flex justify-center">
+          {/* Submit */}
+          <div className="pt-2">
             <input
               type="submit"
               value="Login"
-              className="text-white bg-blue-600 cursor-pointer w-full rounded-lg py-2"
-            ></input>
+              className="text-white bg-primary cursor-pointer w-full rounded-xl py-3"
+            />
           </div>
-          <p>
-            Don't have any Account?{" "}
+          <p className="text-center text-sm text-base-content/70">
+            Don't have an account?
             <Link
               to={"/signup"}
-              className="text-blue-500 underline cursor-pointer ml-1"
+              className="text-primary underline cursor-pointer ml-1"
             >
-              {" "}
-              Signup
+              Sign up
             </Link>
           </p>
         </form>

@@ -12,11 +12,9 @@ function SearchBar() {
   const handleSearch = (e) => {
     e.preventDefault();
     if (!searchTerm.trim()) return;
-
     const foundUser = allUsers.find((user) =>
       user.fullname?.toLowerCase().includes(searchTerm.toLowerCase())
     );
-
     if (foundUser) {
       setSelectedConversation(foundUser);
       setSearchTerm("");
@@ -27,21 +25,20 @@ function SearchBar() {
 
   return (
     <form onSubmit={handleSearch} className="w-full">
-      <div className="flex gap-3">
-        <div className="flex-1 relative">
-          <input
-            type="text"
-            className="w-full px-4 py-3 bg-base-200 border border-base-content/20 rounded-xl outline-none text-base-content placeholder:text-base-content/50 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-200"
-            placeholder="Search users..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-        </div>
+      <div className="flex gap-2 bg-base-100 border border-base-200 rounded-2xl shadow-md px-4 py-2">
+        <input
+          type="text"
+          className="flex-1 px-4 py-2 bg-base-100 text-base-content placeholder:text-base-content/50 outline-none rounded-xl"
+          placeholder="Search users..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
         <button
           type="submit"
-          className="btn btn-primary btn-circle hover:shadow-lg transition-shadow duration-200"
+          className="btn btn-primary btn-circle btn-sm self-center shadow-none"
+          title="Search"
         >
-          <FaSearch className="text-lg" />
+          <FaSearch className="text-base" />
         </button>
       </div>
     </form>

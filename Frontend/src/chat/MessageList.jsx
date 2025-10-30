@@ -19,7 +19,7 @@ function MessageList() {
   }, [messages]);
 
   return (
-    <div className="flex-1 overflow-y-auto overflow-x-hidden p-4 space-y-2">
+    <div className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden px-1 md:px-4 py-2 space-y-1 md:space-y-2">
       {loading ? (
         <Loading />
       ) : (
@@ -33,7 +33,7 @@ function MessageList() {
 
       {!loading && messages.length === 0 && (
         <div className="flex items-center justify-center h-full">
-          <p className="text-center text-base-content/60 text-lg">
+          <p className="text-center text-base-content/60 text-base md:text-lg">
             Say! Hi to start the conversation
           </p>
         </div>
