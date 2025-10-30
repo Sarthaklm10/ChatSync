@@ -6,5 +6,7 @@ const useConversation = create((set) => ({
     set({ selectedConversation }),
   messages: [],
   setMessage: (messages) => set({ messages }),
+  isSidebarOpen: false,
+  setIsSidebarOpen: (isSidebarOpen) => set({ isSidebarOpen }),
 }));
 export default useConversation;

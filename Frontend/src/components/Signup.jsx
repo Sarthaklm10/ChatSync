@@ -1,11 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useAuth } from "../context/AuthProvider";
 import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
+import avatar1 from "../assets/userspfp/user1.png";
+import avatar2 from "../assets/userspfp/user2.png";
+import avatar3 from "../assets/userspfp/user3.png";
 function Signup() {
   const [authUser, setAuthUser] = useAuth();
+  const [selectedAvatar, setSelectedAvatar] = useState(avatar1);
+  const handleAvatarUpload = (e) => {
+    const file = e.target.files && e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      if (typeof reader.result === "string") {
+        setSelectedAvatar(reader.result);
+      }
+    };
+    reader.readAsDataURL(file);
+  };
   const {
     register,
     handleSubmit,
@@ -26,6 +41,7 @@ function Signup() {
       email: data.email,
       password: data.password,
       confirmPassword: data.confirmPassword,
+      avatar: selectedAvatar,
     };
     // console.log(userInfo);
     await axios
@@ -45,18 +61,56 @@ function Signup() {
   };
   return (
     <>
-      <div className="flex h-screen items-center justify-center">
+      <div className="min-h-screen w-full bg-sky-100 flex items-center justify-center px-4 py-10">
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="border border-black px-6 py-2 rounded-md space-y-3 w-96"
+          className="w-full max-w-md bg-base-100 border border-base-200 rounded-2xl shadow-md px-6 py-6 md:px-8 md:py-8 space-y-4"
         >
-          <h1 className="text-2xl items-center text-blue-600 font-bold">
+          {/* Avatar Picker */}
+          <div>
+            <p className="text-sm mb-2">Choose an avatar</p>
+            <div className="flex items-center gap-4 flex-wrap">
+              {[avatar1, avatar2, avatar3].map((av) => (
+                <button
+                  type="button"
+                  key={av}
+                  onClick={() => setSelectedAvatar(av)}
+                  className={`rounded-full p-1 border transition-colors ${
+                    selectedAvatar === av ? "border-primary" : "border-base-300"
+                  }`}
+                  title="Use preset avatar"
+                >
+                  <img
+                    src={av}
+                    alt="avatar"
+                    className="w-14 h-14 rounded-full object-cover"
+                  />
+                </button>
+              ))}
+              <label
+                className="rounded-full p-1 border border-base-300 cursor-pointer"
+                title="Upload from device"
+              >
+                <input
+                  type="file"
+                  accept="image/*"
+                  className="hidden"
+                  onChange={handleAvatarUpload}
+                />
+                <div className="w-14 h-14 rounded-full bg-base-200 flex items-center justify-center text-xs">
+                  Upload
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <h1 className="text-2xl text-center font-extrabold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
             ChatSync
           </h1>
 
-          <h2 className="text-2xl items-center">
+          <h2 className="text-xl text-center text-base-content">
             Create a new{" "}
-            <span className="text-blue-600 font-semibold">Account</span>
+            <span className="text-primary font-semibold">Account</span>
           </h2>
 
           {/* Fullname */}
@@ -122,7 +176,7 @@ function Signup() {
             <input
               type="password"
               className="grow"
-              placeholder="password"
+              placeholder="Password"
               {...register("password", { required: true })}
             />
           </label>
@@ -149,7 +203,7 @@ function Signup() {
             <input
               type="password"
               className="grow"
-              placeholder="confirm password"
+              placeholder="Confirm password"
               {...register("confirmPassword", {
                 required: true,
                 validate: validatePasswordMatch,
@@ -162,21 +216,20 @@ function Signup() {
             </span>
           )}
 
-          {/* Text & Button */}
-          <div className="flex justify-center">
+          {/* Submit */}
+          <div className="pt-2">
             <input
               type="submit"
               value="Signup"
-              className="text-white bg-blue-600 cursor-pointer w-full rounded-lg py-2"
-            ></input>
+              className="text-white bg-primary cursor-pointer w-full rounded-xl py-3"
+            />
           </div>
-          <p>
-            Have any Account?{" "}
+          <p className="text-center text-sm text-base-content/70">
+            Have an account?
             <Link
               to={"/login"}
-              className="text-blue-500 underline cursor-pointer ml-1"
+              className="text-primary underline cursor-pointer ml-1"
             >
-              {" "}
               Login
             </Link>
           </p>
