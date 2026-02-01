@@ -6,9 +6,11 @@ import cookieParser from "cookie-parser";
 
 import userRoute from "./routes/user.route.js";
 import messageRoute from "./routes/message.route.js";
-import { app, server } from "./SocketIO/server.js";
+import { configureSocket } from "./SocketIO/server.js";
 
 dotenv.config();
+
+const app = express();
 
 const PORT = process.env.PORT || 3001;
 const URI = process.env.MONGODB_URI || "mongodb://localhost:27017/ChatApp";
@@ -34,6 +36,8 @@ try {
 //routes
 app.use("/api/user", userRoute);
 app.use("/api/message", messageRoute);
+
+const { server } = configureSocket(app);
 
 server.listen(PORT, () => {
   console.log(`Server is Running on port ${PORT}`);
