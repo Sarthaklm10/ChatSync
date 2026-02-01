@@ -8,5 +8,7 @@ const useConversation = create((set) => ({
   setMessage: (messages) => set({ messages }),
   isSidebarOpen: false,
   setIsSidebarOpen: (isSidebarOpen) => set({ isSidebarOpen }),
+  profileUser: null,
+  setProfileUser: (profileUser) => set({ profileUser }),
 }));
 export default useConversation;

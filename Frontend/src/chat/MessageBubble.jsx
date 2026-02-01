@@ -21,13 +21,15 @@ function MessageBubble({ message }) {
 
   return (
     <div className="py-1 md:py-2 animate-fade-in-up">
-      <div className={`chat ${messageClasses}`}>
+      <div className={`chat ${messageClasses} group`}>
+        {" "}
+        {/* group enables hover/tap styles */}
         <div
           className={`chat-bubble ${bubbleClasses} hover:shadow-xl transition-shadow duration-200 rounded-2xl px-3 py-2 md:px-4 md:py-3 text-sm md:text-base max-w-full sm:max-w-md md:max-w-lg break-words`}
         >
           {message.message}
         </div>
-        <div className="chat-footer opacity-70 text-xs mt-1">
+        <div className="chat-footer opacity-0 group-hover:opacity-70 active:opacity-70 text-xs mt-1 transition-opacity duration-150">
           {formatTime(message.createdAt)}
         </div>
       </div>

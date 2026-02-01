@@ -4,6 +4,7 @@ import MessageList from "./MessageList";
 import MessageInput from "./MessageInput";
 import useConversation from "../store/useConversation.js";
 import { useAuth } from "../context/AuthProvider.jsx";
+import UserProfileSheet from "./UserProfileSheet.jsx";
 
 function ChatArea() {
   const { selectedConversation, setSelectedConversation } = useConversation();
@@ -11,7 +12,8 @@ function ChatArea() {
     return setSelectedConversation(null);
   }, [setSelectedConversation]);
   return (
-    <div className="bg-base-200 text-base-content flex flex-col h-full w-full px-1 pt-1 md:px-8 md:py-4 overflow-x-hidden">
+    <div className="bg-base-200 text-base-content flex flex-col h-full w-full px-1 pt-1 md:px-8 md:py-4 overflow-x-hidden relative">
+      <UserProfileSheet />
       {!selectedConversation ? (
         <NoChatSelected />
       ) : (

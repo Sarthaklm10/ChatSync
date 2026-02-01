@@ -3,7 +3,8 @@ import useConversation from "../store/useConversation.js";
 import { useSocketContext } from "../context/SocketContext.jsx";
 
 function UserItem({ user, setMobileOpen }) {
-  const { selectedConversation, setSelectedConversation } = useConversation();
+  const { selectedConversation, setSelectedConversation, setProfileUser } =
+    useConversation();
   const { onlineUsers } = useSocketContext();
 
   const isSelected = selectedConversation?._id === user._id;
@@ -12,6 +13,12 @@ function UserItem({ user, setMobileOpen }) {
   const handleUserSelect = () => {
     setSelectedConversation(user);
     if (setMobileOpen) setMobileOpen(false); // Auto-close sidebar on mobile after selection
+  };
+
+  const openProfile = (e) => {
+    e.stopPropagation();
+    setProfileUser(user);
+    if (setMobileOpen) setMobileOpen(false);
   };
 
   return (
@@ -24,7 +31,10 @@ function UserItem({ user, setMobileOpen }) {
       onClick={handleUserSelect}
     >
       <div className="flex items-center gap-4 p-3">
-        <div className={`avatar ${isOnline ? "online" : ""}`}>
+        <div
+          className={`avatar ${isOnline ? "online" : ""}`}
+          onClick={openProfile}
+        >
           {user.avatar ? (
             <div className="w-12 h-12 rounded-full ring-2 ring-offset-2 ring-base-200 shadow-sm overflow-hidden">
               <img

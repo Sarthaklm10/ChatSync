@@ -3,7 +3,7 @@ import useConversation from "../store/useConversation.js";
 import { useSocketContext } from "../context/SocketContext.jsx";
 
 function ChatHeader() {
-  const { selectedConversation } = useConversation();
+  const { selectedConversation, setProfileUser } = useConversation();
   const { onlineUsers, socket } = useSocketContext();
   const [isTyping, setIsTyping] = useState(false);
 
@@ -50,9 +50,10 @@ function ChatHeader() {
             ? " online"
             : ""
         }`}
+        onClick={() => setProfileUser(selectedConversation)}
       >
         {selectedConversation.avatar ? (
-          <div className="w-10 h-10 md:w-14 md:h-14 rounded-full ring-2 ring-offset-2 ring-base-200 shadow-md overflow-hidden">
+          <div className="w-10 h-10 md:w-14 md:h-14 rounded-full ring-2 ring-offset-2 ring-base-200 shadow-md overflow-hidden cursor-pointer">
             <img
               src={selectedConversation.avatar}
               alt="avatar"
@@ -60,7 +61,7 @@ function ChatHeader() {
             />
           </div>
         ) : (
-          <div className="w-10 h-10 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-primary to-secondary text-white flex items-center justify-center ring-2 ring-offset-2 ring-base-200 shadow-md">
+          <div className="w-10 h-10 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-primary to-secondary text-white flex items-center justify-center ring-2 ring-offset-2 ring-base-200 shadow-md cursor-pointer">
             <span className="font-semibold text-base md:text-lg">
               {(
                 selectedConversation.fullname ||
