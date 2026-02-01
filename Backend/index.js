@@ -10,18 +10,19 @@ import { app, server } from "./SocketIO/server.js";
 
 dotenv.config();
 
+const PORT = process.env.PORT || 3001;
+const URI = process.env.MONGODB_URI || "mongodb://localhost:27017/ChatApp";
+const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:3001";
+
 // middleware
 app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "http://localhost:3001",
+    origin: FRONTEND_URL,
     credentials: true,
   })
 );
-
-const PORT = process.env.PORT || 3001;
-const URI = process.env.MONGODB_URI;
 
 try {
   mongoose.connect(URI);
